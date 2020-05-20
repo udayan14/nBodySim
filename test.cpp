@@ -4,5 +4,5 @@
 int main(){
     Vec3<int> a(3);
 
-    std::cout << 0 << "\n";
+    std::cout << a << "\n";
 }
