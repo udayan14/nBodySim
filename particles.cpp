@@ -8,7 +8,7 @@ Particle::Particle(double m, Vec3<double> pos, Vec3<double> vel)
 
 void Particle::update(){
     acceleration = force/mass;
-    position += velocity*t_step + acceleration*t_step*t_step*0.5;
+    position += velocity*t_step + 0.5*acceleration*t_step*t_step;
     velocity += acceleration * t_step;
     momentum += force * t_step;
 }

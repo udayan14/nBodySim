@@ -12,17 +12,17 @@ class Vec3{
         Vec3(T);
         // 3d constructor
         Vec3(T,T,T);
-        Vec3<T> operator+(const Vec3<T> &);
-        Vec3<T> operator*(const T &);           /*TODO make multiplication commutative */
-        Vec3<T> operator/(const T &);
+        Vec3<T> operator+(const Vec3<T> &) const;
+        Vec3<T> operator*(const T &) const;           /*TODO make multiplication commutative */
+        Vec3<T> operator/(const T &) const;
         Vec3<T> operator+=(const Vec3<T> &);
         Vec3<T> operator*=(const T &);
-        Vec3<T> operator-();
-        Vec3<T> operator-(const Vec3<T> &);
+        Vec3<T> operator-() const;
+        Vec3<T> operator-(const Vec3<T> &) const;
         Vec3<T> operator-=(const Vec3<T> &);
-        T dot(const Vec3<T> &);
+        T dot(const Vec3<T> &) const;
         template<class U>
-        U norm();
+        U norm() const;
         template<class U>
         friend std::ostream& operator<<(std::ostream& out, const Vec3<U> &v);
 };
@@ -43,17 +43,17 @@ Vec3<T>::Vec3(T a, T b, T c)
 {}
 
 template<class T>
-Vec3<T> Vec3<T>::operator+(const Vec3<T> &a){
+Vec3<T> Vec3<T>::operator+(const Vec3<T> &a) const{
     return Vec3(x+a.x, y+a.y, z+a.z);
 }
 
 template<class T>
-Vec3<T> Vec3<T>::operator*(const T &a){
+Vec3<T> Vec3<T>::operator*(const T &a) const{
     return Vec3(a*x, a*y, a*z);
 }
 
 template<class T>
-Vec3<T> Vec3<T>::operator/(const T &a){
+Vec3<T> Vec3<T>::operator/(const T &a) const{
     return (*this)*(1.0/a);
 }
 
@@ -74,13 +74,13 @@ Vec3<T> Vec3<T>::operator*=(const T &a){
 }
 
 template<class T>
-Vec3<T> Vec3<T>::operator-(){
+Vec3<T> Vec3<T>::operator-() const{
     (*this)*=-1;
     return *this;
 }
 
 template<class T>
-Vec3<T> Vec3<T>::operator-(const Vec3<T> &a){
+Vec3<T> Vec3<T>::operator-(const Vec3<T> &a) const{
     return (*this) + -1*a;
 }
 
@@ -91,17 +91,21 @@ Vec3<T> Vec3<T>::operator-=(const Vec3<T>&a){
 }
 
 template<class T>
-T Vec3<T>::dot(const Vec3<T> &a){
+T Vec3<T>::dot(const Vec3<T> &a) const{
     return (x*a.x + y*a.y + z*a.z);
 }
 
 template<class T>
 template<class U>
-U Vec3<T>::norm(){
+U Vec3<T>::norm() const{
     return sqrt((*this).dot(*this));
 }
 
 template<class T>
 std::ostream& operator<<(std::ostream& out, const Vec3<T> &v){
     return out << v.x << " " << v.y << " " << v.z;
+}
+template<class T>
+Vec3<T> operator*(const T &k, const Vec3<T> &vec){
+    return vec.operator*(k);
 }
