@@ -13,7 +13,8 @@ class Vec3{
         // 3d constructor
         Vec3(T,T,T);
         Vec3<T> operator+(const Vec3<T> &);
-        Vec3<T> operator*(const T &);
+        Vec3<T> operator*(const T &);           /*TODO make multiplication commutative */
+        Vec3<T> operator/(const T &);
         Vec3<T> operator+=(const Vec3<T> &);
         Vec3<T> operator*=(const T &);
         Vec3<T> operator-();
@@ -49,6 +50,11 @@ Vec3<T> Vec3<T>::operator+(const Vec3<T> &a){
 template<class T>
 Vec3<T> Vec3<T>::operator*(const T &a){
     return Vec3(a*x, a*y, a*z);
+}
+
+template<class T>
+Vec3<T> Vec3<T>::operator/(const T &a){
+    return (*this)*(1.0/a);
 }
 
 template<class T>
