@@ -6,6 +6,10 @@ Particle::Particle(double m, Vec3<double> pos, Vec3<double> vel)
 : mass(m), position(pos), velocity(vel)
 {}
 
+void Particle::set_force( double f){
+    force = f;
+}
+
 void Particle::update(){
     acceleration = force/mass;
     position += velocity*t_step + 0.5*acceleration*t_step*t_step;

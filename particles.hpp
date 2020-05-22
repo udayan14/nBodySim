@@ -4,7 +4,8 @@ class Particle{
     //Might not need all these vectors;
     public:
         static double t_step;
-        Particle(double,Vec3<double>,Vec3<double>); // mass, position, velocity in that order;:
+        Particle(double,Vec3<double>,Vec3<double>); // mass, position, velocity in that order;
+        void set_force( double);
     private:
         Vec3<double> position;
         Vec3<double> velocity;
