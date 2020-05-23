@@ -5,7 +5,8 @@ class Particle{
     public:
         static double t_step;
         Particle(double,Vec3<double>,Vec3<double>); // mass, position, velocity in that order;
-        void set_force( double);
+        void set_force(Vec3<double>);
+        friend std::ostream& operator<<(std::ostream&, const Particle &p);
     private:
         Vec3<double> position;
         Vec3<double> velocity;
