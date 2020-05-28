@@ -13,7 +13,7 @@ class Vec3{
         // 3d constructor
         Vec3(T,T,T);
         Vec3<T> operator+(const Vec3<T> &) const;
-        Vec3<T> operator*(const T &) const;           /*TODO make multiplication commutative */
+        Vec3<T> operator*(const T &) const; 
         Vec3<T> operator/(const T &) const;
         Vec3<T> operator+=(const Vec3<T> &);
         Vec3<T> operator*=(const T &);
@@ -21,10 +21,15 @@ class Vec3{
         Vec3<T> operator-(const Vec3<T> &) const;
         Vec3<T> operator-=(const Vec3<T> &);
         T dot(const Vec3<T> &) const;
+
         template<class U>
         U norm() const;
+
         template<class U>
         friend std::ostream& operator<<(std::ostream& out, const Vec3<U> &v);
+
+        template<class U>
+        friend std::istream& operator>>(std::istream& in, Vec3<U> &v);
 };
 
 template<class T>
@@ -50,6 +55,11 @@ Vec3<T> Vec3<T>::operator+(const Vec3<T> &a) const{
 template<class T>
 Vec3<T> Vec3<T>::operator*(const T &a) const{
     return Vec3(a*x, a*y, a*z);
+}
+
+template<class T>
+Vec3<T> operator*(const T &k, const Vec3<T> &vec){
+    return vec.operator*(k);
 }
 
 template<class T>
@@ -105,7 +115,8 @@ template<class T>
 std::ostream& operator<<(std::ostream& out, const Vec3<T> &v){
     return out << v.x << " " << v.y << " " << v.z;
 }
+
 template<class T>
-Vec3<T> operator*(const T &k, const Vec3<T> &vec){
-    return vec.operator*(k);
+std::istream& operator>>(std::istream& in, Vec3<T> &v){
+    return in >> v.x >> v.y >> v.z;
 }
