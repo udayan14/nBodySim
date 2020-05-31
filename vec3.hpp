@@ -1,3 +1,4 @@
+#pragma once
 #include<iostream>
 #include<cmath>
 
@@ -17,7 +18,7 @@ class Vec3{
         Vec3<T> operator/(const T &) const;
         Vec3<T> operator+=(const Vec3<T> &);
         Vec3<T> operator*=(const T &);
-        Vec3<T> operator-() const;
+        Vec3<T> operator-();
         Vec3<T> operator-(const Vec3<T> &) const;
         Vec3<T> operator-=(const Vec3<T> &);
         T dot(const Vec3<T> &) const;
@@ -84,14 +85,14 @@ Vec3<T> Vec3<T>::operator*=(const T &a){
 }
 
 template<class T>
-Vec3<T> Vec3<T>::operator-() const{
-    (*this)*=-1;
+Vec3<T> Vec3<T>::operator-(){
+    (*this)*=-1.0;
     return *this;
 }
 
 template<class T>
 Vec3<T> Vec3<T>::operator-(const Vec3<T> &a) const{
-    return (*this) + -1*a;
+    return (*this) + -1.0*a;
 }
 
 template<class T>
@@ -113,7 +114,7 @@ U Vec3<T>::norm() const{
 
 template<class T>
 std::ostream& operator<<(std::ostream& out, const Vec3<T> &v){
-    return out << v.x << " " << v.y << " " << v.z;
+    return out << v.x << "\t" << v.y << "\t" << v.z;
 }
 
 template<class T>

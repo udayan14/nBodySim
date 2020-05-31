@@ -1,7 +1,7 @@
 #include "particles.hpp"
 
 double Particle::t_step;
-const double G = 6.67408e-11;   //m3 kg - 1 s - 2
+const double Particle::G = 6.67408e-11;   //m3 kg - 1 s - 2
 
 Particle::Particle(double m, Vec3<double> pos, Vec3<double> vel)
 : mass(m), position(pos), velocity(vel)
