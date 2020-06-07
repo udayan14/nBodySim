@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/nbody.dir/src/particles.cpp.o CMakeFiles/nbody.dir/src/solver.cpp.o CMakeFiles/nbody.dir/src/test.cpp.o  -o nbody 
