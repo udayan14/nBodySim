@@ -1,0 +1,3 @@
+/mnt/c/Users/14uda/Desktop/My_Computer/UCSD_Abhyas/Qt3/phys244/nBodySim/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/14uda/Desktop/My_Computer/UCSD_Abhyas/Qt3/phys244/nBodySim/build/CMakeFiles/nbody.dir
+/mnt/c/Users/14uda/Desktop/My_Computer/UCSD_Abhyas/Qt3/phys244/nBodySim/build/CMakeFiles/edit_cache.dir
