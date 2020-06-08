@@ -1,5 +1,6 @@
 #include"solver.hpp"
 #include<iostream>
+#include<omp.h>
 //class Solver{
     //public:
         //vector<Particles> p_arr;
@@ -28,7 +29,6 @@ Solver::Solver(const std::vector<Particle>& v, std::string s){
 }
 
 void Solver::step(){
-
     if(method=="naive"){
         // Calculate forces
         for(int i=0 ; i<num_particles ; i++){
