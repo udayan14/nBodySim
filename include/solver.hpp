@@ -13,5 +13,6 @@ class Solver{
         void step();
         void log();
         void output();
+        double total_energy();
 };
 

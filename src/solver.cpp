@@ -1,5 +1,7 @@
 #include"solver.hpp"
 #include<iostream>
+#include<fstream>
+#include<string>
 #include<omp.h>
 //class Solver{
     //public:
@@ -31,14 +33,19 @@ Solver::Solver(const std::vector<Particle>& v, std::string s){
 void Solver::step(){
     if(method=="naive"){
         // Calculate forces
-        for(int i=0 ; i<num_particles ; i++){
-            double tmp = Particle::G * p_arr[i].mass;
-            for(int j=i+i ; j<num_particles ; j++){
-                Vec3<double> del = p_arr[j].position - p_arr[i].position;
-                double r = del.norm<double>();
-                Vec3<double> f = tmp*p_arr[j].mass*del/(r*r*r);
-                p_arr[i].set_force(f);
-                p_arr[j].set_force(-f);
+         # pragma omp parallel shared (p_arr)
+        {
+            # pragma omp for
+            for(unsigned i=0 ; i<num_particles ; i++){
+                double tmp = Particle::G * p_arr[i].mass;
+                Vec3<double> f(0.0);
+                for(unsigned j=0 ; j<num_particles ; j++){
+                    if(i==j) continue;
+                    Vec3<double> del = p_arr[j].position - p_arr[i].position;
+                    double r = del.norm<double>();
+                    f += p_arr[j].mass*del/(r*r*r);
+                }
+                p_arr[i].set_force(tmp*f);
             }
         }
         for(auto &p : p_arr){
@@ -54,12 +61,34 @@ void Solver::log(){
 }
 
 void Solver::output(){
-    for(int i=0 ; i<num_particles ; i++){
-        std::cout << "Particle " << i << "\n";
-        std::cout << p_arr[i];
+    for(unsigned i=0 ; i<num_particles ; i++){
+        std::ofstream f;
+        f.open(std::to_string(i)+".dat");
+        f << "Particle " << i << "\n";
+        f << p_arr[i];
         for(const auto &v : p_arr[i].locations){
-            std::cout << v << "\n";
+            f << v << "\n";
         }
-        std::cout << "\n";
+        f.close();
     }
 }
+
+double Solver::total_energy(){
+    double output = 0.0;
+    for(unsigned i=0 ; i<num_particles ; i++){
+        double tmp = Particle::G * p_arr[i].mass;
+        double acc = 0.0;
+        for(unsigned j=0 ; j<num_particles ; j++){
+            if(i==j) continue;
+            Vec3<double> del = p_arr[j].position - p_arr[i].position;
+            double r = del.norm<double>();
+            acc += p_arr[j].mass/r;
+        }
+        output += -1.0*acc*tmp;
+    }
+    for(const auto& p : p_arr){
+        output += 0.5 * p.mass * p.velocity.dot(p.velocity);
+    }
+    return output;
+}
+ 

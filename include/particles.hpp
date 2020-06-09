@@ -6,8 +6,9 @@ class Particle{
     public:
         static double t_step;
         static double G;
-                double mass;
+        double mass;
         Vec3<double> position;
+        Vec3<double> velocity;
         void update();
         Particle();
         Particle(double,Vec3<double>,Vec3<double>); // mass, position, velocity in that order;
@@ -17,7 +18,6 @@ class Particle{
         friend std::istream& operator>>(std::istream&, Particle &p);
     //Perform the update according to laws of motion
     private:
-        Vec3<double> velocity;
         Vec3<double> acceleration;
         Vec3<double> momentum;
         Vec3<double> force;         // Net total force on the particle
