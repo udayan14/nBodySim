@@ -148,7 +148,7 @@ int main(int argc, char* argv[]){
     std::cout << "\n";
     std::cout << "N body Simulation:\n";
     std::cout << "C++/OpenMP version\n";
-    std::cout << "Computes the future of N partcicles bound by gravity\n";
+    std::cout << "Computes the future of N particles bound by gravity\n";
 
     std::cout << "\n";
     std::cout << "The number of processors available = " << omp_get_num_procs() << "\n";

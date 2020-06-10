@@ -1,5 +1,5 @@
 #pragma once
-#include"Vec3.hpp"
+#include"vec3.hpp"
 #include<deque>
 class Particle{
     //Might not need all these vectors;
