@@ -64,8 +64,8 @@ void Solver::output(){
     for(unsigned i=0 ; i<num_particles ; i++){
         std::ofstream f;
         f.open(std::to_string(i)+".dat");
-        f << "Particle " << i << "\n";
-        f << p_arr[i];
+        //f << "Particle " << i << "\n";
+        //f << p_arr[i];
         for(const auto &v : p_arr[i].locations){
             f << v << "\n";
         }
