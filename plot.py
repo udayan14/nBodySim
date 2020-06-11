@@ -15,7 +15,6 @@ def plot_output(bodies, outfile = None):
     ax.set_xlim([-max_range,max_range])    
     ax.set_ylim([-max_range,max_range])
     ax.set_zlim([-max_range,max_range])
-    ax.legend()        
 
     if outfile:
         plot.savefig(outfile)
